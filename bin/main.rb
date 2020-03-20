@@ -35,8 +35,8 @@ loop do
         input =gets.chomp
         puts input
         puts "Your move is not valid!" unless nums.include?(input)
-        # puts "Player#{player}\n enter a number between 1 - 9"
-        # input =gets.chomp
+        
+        
         if player ==1 && nums.include?(input) 
             dashboard_Arr[input.to_i - 1] = "X"  
         elsif player ==2 && nums.include?(input)
