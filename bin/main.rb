@@ -86,10 +86,21 @@ class Game
 
   def self.start
     print "Lets start\n"
-    print 'Player one: '
-    p1_name = gets.chomp
-    print 'Player two: '
-    p2_name = gets.chomp
+    p1_name = nil
+    loop do
+      print 'Player one: '
+      p1_name = gets.chomp
+      break unless p1_name.empty?
+
+      puts 'Please Enter at least one character'
+    end
+
+    p2_name = nil
+    loop do
+      print 'Player two: '
+      p2_name = gets.chomp
+      break unless p2_name.empty?
+    end
 
     p1 = Player.new(p1_name, 'X')
     p2 = Player.new(p2_name, 'O')
