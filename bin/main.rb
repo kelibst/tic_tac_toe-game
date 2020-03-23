@@ -91,5 +91,3 @@ def start_game
 
   @game.turn
 end
-
-
