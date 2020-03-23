@@ -1,4 +1,5 @@
 require_relative '../bin/main.rb'
+require_relative '../lib/players.rb'
 class Game
   def initialize(player1, player2)
     @player1 = player1
@@ -16,18 +17,6 @@ class Game
     player = @turn_count.odd? ? @player1 : @player2
 
     get_move(player)
-  end
-end
-
-class Player
-  attr_reader :name, :moves_history
-  attr_writer :name, :moves_history
-  attr_reader :marker
-
-  def initialize(name, marker)
-    @name = name
-    @marker = marker
-    @moves_history = []
   end
 end
 
