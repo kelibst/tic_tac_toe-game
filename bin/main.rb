@@ -33,7 +33,7 @@ def game_over
   input = gets.chomp.to_s.downcase
 
   if input == 'y'
-    Game.start
+    start_game
   elsif input == 'n'
     puts 'Thanks for trying!'
     exit
@@ -65,4 +65,40 @@ def check_win(player, player_history_sorted)
   end
 
   turn
+end
+
+def start_game
+  print "Lets start\n"
+  p1_name = nil
+  loop do
+    print 'Player one: '
+    p1_name = gets.chomp
+    break unless p1_name.empty?
+
+    puts 'Please Enter at least one character'
+  end
+
+  p2_name = nil
+  loop do
+    print 'Player two: '
+    p2_name = gets.chomp
+    break unless p2_name.empty?
+  end
+
+  p1 = Player.new(p1_name, 'X')
+  p2 = Player.new(p2_name, 'O')
+  @game = Game.new(p1, p2)
+
+  @game.turn
+end
+
+class Player
+  attr_accessor :name, :moves_history
+  attr_reader :marker
+
+  def initialize(name, marker)
+    @name = name
+    @marker = marker
+    @moves_history = []
+  end
 end
