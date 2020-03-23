@@ -19,5 +19,17 @@ class Game
   end
 end
 
+class Player
+  attr_reader :name, :moves_history
+  attr_writer :name, :moves_history
+  attr_reader :marker
+
+  def initialize(name, marker)
+    @name = name
+    @marker = marker
+    @moves_history = []
+  end
+end
+
 WIN = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]].freeze
 start_game
