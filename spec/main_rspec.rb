@@ -4,7 +4,7 @@ RSpec.descibe Game do
   p1 = Player.new(p1_name, 'X')
   p2 = Player.new(p2_name, 'O')
 
-descibe "display_board" do
+descibe "#display_board" do
   it 'displays the board' do
     @field.each_index do |i|
       if (i % 3).zero?
