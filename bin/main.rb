@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require_relative '../lib/game_logic.rb'
-require_relative '../lib/players.rb'
+require_relative '../lib/player.rb'
 
 def display_board
   @field.each_index do |i|
@@ -44,6 +44,30 @@ def game_over
   end
 end
 
+def check_win(player, player_history_sorted)
+  WIN.each do |r1|
+    counter = 0
+
+    r1.each do |r2|
+      counter += 1 if player_history_sorted.include?(r2.to_s)
+
+      next unless counter == 3
+
+      display_board
+      puts "Wow, #{player.name}! It's a win!"
+      game_over
+    end
+  end
+
+  if @turn_count >= 9
+    display_board
+    puts "It's a tie.Try again?"
+    game_over
+  end
+
+  turn
+end
+
 def start_game
   print "Lets start\n"
   p1_name = nil
@@ -65,18 +89,4 @@ def start_game
   res = [p1_name, p2_name]
 end
 
-res =  start_game
-p1 = Player.new(res[0], 'X')
-  p2 = Player.new(res[1], 'O')
-  games = Game.new(p1, p2)
 
-  games.turn
-  p1 = Player.new(p1_name, 'X')
-  p2 = Player.new(p2_name, 'O')
-  game = Game.new(p1, p2)
-
-  game.turn
-end
-
-WIN = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]].freeze
-start_game
