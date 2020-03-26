@@ -1,4 +1,4 @@
-require_relative '../bin/main.rb'
+require_relative '../lib/game_logic.rb'
 require_relative '../lib/players.rb'
 class Game
   def initialize(player1, player2)
@@ -45,12 +45,7 @@ def check_win(player, player_history_sorted)
 end
 
 WIN = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]].freeze
-res =  start_game
 
-p1 = Player.new(res[0], 'X')
-  p2 = Player.new(res[1], 'O')
-  puts p1
-  puts p2
-  games = Game.new(p1, p2)
 
-  games.turn
+
+ 

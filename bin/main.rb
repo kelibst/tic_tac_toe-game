@@ -65,3 +65,9 @@ def start_game
   res = [p1_name, p2_name]
 end
 
+res =  start_game
+p1 = Player.new(res[0], 'X')
+  p2 = Player.new(res[1], 'O')
+  games = Game.new(p1, p2)
+
+  games.turn
