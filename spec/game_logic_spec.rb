@@ -1,46 +1,51 @@
 require_relative '../lib/game_logic.rb'
 RSpec.describe Game do
   describe '#display_board' do
-    it 'display the game board' do
-      field = ['',
+  let(:field)  {['',
                '1', '2', '3',
                '4', '5', '6',
-               '7', '8', '9']
+               '7', '8', '9']}
+    it 'display the game board' do
+      
 
       expect(field).to eql(field)
     end
   end
 
   describe '#get_move' do
+  let(:nfield) {['',
+               '1', '2', '3',
+               '4', '5', '6',
+               '7', '8', '9']}
+      let(:nmove)  {1}
     it 'displays valid move' do
-      field = ['',
-               '1', '2', '3',
-               '4', '5', '6',
-               '7', '8', '9']
-      move = 1
+      
 
-      expect(field[move]).to eql('1')
+      expect(nfield[nmove]).to eql('1')
     end
-    it 'displays invalide move' do
-      field = ['',
+    let (:nnfield)  {['',
                '1', '2', '3',
                '4', '5', '6',
-               '7', '8', '9']
-      move = 10
-      expect(field[move]).not_to eql(move)
+               '7', '8', '9']}
+      let(:nnmove)  {10}
+    it 'displays invalide move' do
+      
+      expect(nnfield[nnmove]).not_to eql(nnmove)
     end
   end
 
   describe '#game_over' do
+  let(:input)  {'n'}
     it 'shows end game and asks the winner to quit or continue ' do
-      input = 'n'
+      
       expect(input).to eql(input)
     end
   end
 
   describe '#check_win' do
+  let(:win)  {"Wow, It's a win!"}
     it 'its checks and displays player win' do
-      win = "Wow, It's a win!"
+      
       expect(win).to eql("Wow, It's a win!")
     end
   end
