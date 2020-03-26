@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require_relative '../lib/game_logic.rb'
-require_relative '../lib/player.rb'
+require_relative '../lib/players.rb'
 
 def display_board
   @field.each_index do |i|
@@ -86,7 +86,9 @@ def start_game
     break unless p2_name.empty?
   end
 
-  res = [p1_name, p2_name]
+  p1 = Player.new(p1_name, 'X')
+  p2 = Player.new(p2_name, 'O')
+  @game = Game.new(p1, p2)
+
+  @game.turn
 end
-
-
