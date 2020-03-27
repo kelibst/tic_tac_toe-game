@@ -1,4 +1,6 @@
 require_relative '../lib/players.rb'
+
+won = false
 class Game
   def initialize(player1, player2)
     @player1 = player1
@@ -18,6 +20,8 @@ class Game
     end
   end
 
+  private
+
   def get_move(player)
     display_board
 
@@ -33,7 +37,19 @@ class Game
       get_move(player)
     end
 
-    check_win(player, player_history_sorted)
+    if check_win(player, player_history_sorted)
+
+      display_board
+        puts "Wow, #{player.name}! It's a win!"
+        game_over
+    elsif @turn_count >= 9
+      display_board
+      puts "It's a tie.Try again?"
+      game_over
+
+    
+    end
+    turn
   end
 
   def game_over
@@ -50,8 +66,8 @@ class Game
       game_over
     end
   end
-
-  def check_win(player, player_history_sorted)
+public
+  def check_win(player, player_history_sorted, won = false)
     WIN.each do |r1|
       counter = 0
 
@@ -59,20 +75,10 @@ class Game
         counter += 1 if player_history_sorted.include?(r2.to_s)
 
         next unless counter == 3
-
-        display_board
-        puts "Wow, #{player.name}! It's a win!"
-        game_over
+        won = true if counter == 3   
       end
     end
-
-    if @turn_count >= 9
-      display_board
-      puts "It's a tie.Try again?"
-      game_over
-    end
-
-    turn
+        won
   end
 
   def turn
