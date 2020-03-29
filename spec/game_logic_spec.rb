@@ -21,7 +21,7 @@ RSpec.describe Game do
     let(:player_history) { %w[4 5 6] }
     let(:player_history1) { [4, 5, 6] }
     let(:player1) { 'Keli' }
-    WIN = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]].freeze
+   
     it 'it checks and displays true if player history is in Win array' do
       expect(subject.check_win(player1, player_history)).to eq(true)
     end
@@ -30,4 +30,21 @@ RSpec.describe Game do
       expect(subject.check_win(player1, player_history1)).to eq(false)
     end
   end
+  describe '#good_move?' do 
+  let(:move) {5}
+  it 'returns true if move is between 1 - 9 and the spot is not taken' do
+    expect(subject.good_move?(player1, move)).to eq(true)
+  end
+
+  it 'returns false if move is between 1 - 9 and the spot is not taken' do
+    move = 10
+    expect(subject.good_move?(player1, move)).to eq(false)
+  end
+
+  it 'returns true if move is between 1 - 9 and the spot is not taken' do
+    move = 10
+    expect(subject.good_move?(player1, move)).to eq(false)
+  end
+
+end
 end

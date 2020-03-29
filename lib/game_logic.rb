@@ -1,8 +1,10 @@
 require_relative '../lib/players.rb'
 class Game
+ 
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
+    @WIN = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]].freeze
     @turn_count = 0
     @field = ['',
               '1', '2', '3',
@@ -18,6 +20,14 @@ class Game
     end
   end
 
+  def good_move?(_player, move)
+    if @field[move] != 'X' && @field[move] != 'O' && (1..9).include?(move)
+      true
+    else
+      false
+    end
+  end
+
   private
 
   def get_move(player)
@@ -28,10 +38,10 @@ class Game
     player.moves_history << move
     player_history_sorted = player.moves_history.sort.join
 
-    if @field[move] != 'X' && @field[move] != 'O' && (1..9).include?(move)
+    if good_move?(player, move)
       @field[move] = player.marker
     else
-      puts 'Invalid Move'
+      p 'Invalid Move'
       get_move(player)
     end
     player_won(player, player_history_sorted)
@@ -70,7 +80,7 @@ class Game
   public
 
   def check_win(_player, player_history_sorted, won = false)
-    WIN.each do |r1|
+    @WIN.each do |r1|
       counter = 0
 
       r1.each do |r2|
