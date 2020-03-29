@@ -1,10 +1,9 @@
 require_relative '../lib/players.rb'
 class Game
- 
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
-    @WIN = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]].freeze
+    @win_array = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]].freeze
     @turn_count = 0
     @field = ['',
               '1', '2', '3',
@@ -80,7 +79,7 @@ class Game
   public
 
   def check_win(_player, player_history_sorted, won = false)
-    @WIN.each do |r1|
+    @win_array.each do |r1|
       counter = 0
 
       r1.each do |r2|
